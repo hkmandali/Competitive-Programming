@@ -54,18 +54,21 @@ public class TarjansAlgo {
     /* we use two times called visited time and low time for finding out the articulation points
     a vertex is an articulation point if either of the below two holds
     1. it is the root of dfs and children > 1 , because for dfs it again needs to go through that point and children wont be more than 1 in that case
-    2. low time of any of it s child > its visited time
+    2. low time of any of it s child >= its visited time
      */
 
-    static void recur(int i,int[] visited,int[] artpoints,int[] visitedtime,int[] lowtime,int[] parent,LinkedList<Pair<Integer,Integer>> adjList) // this function is recursively called until all the vertices are exhausted and we find the min low time
+    static void recur(int i,int[] visited,int[] artpoints,int[] visitedtime,int[] lowtime,int[] parent,LinkedList<Pair<Integer,Integer>>[] adjList) // this function is recursively called until all the vertices are exhausted and we find the min low time
     {
+        System.out.println("came in recur function for "+ i);
         int child =0; // child for a specific vertex
         visited[i] = 1;
-        System.out.println("the value of time is "+time);
-        visitedtime[i] =lowtime[i]  = ++time;
-        for(Pair<Integer,Integer> test: adjList)
+       // System.out.println("the value of time is "+time);
+        visitedtime[i] =lowtime[i]  = time++;
+        System.out.println("visited and low time arew  "+ visitedtime[i] +" "+lowtime[i]);;
+        for(Pair<Integer,Integer> test: adjList[i])
         {
                 int key = test.getKey(); // taking the next list item i.e whichever it is connected to
+                 System.out.println("key value is and visited ket is "+key+" "+visited[key]);
                 if(visited[key] == -1) // not yet visited
                 {
                     child++;
@@ -84,7 +87,8 @@ public class TarjansAlgo {
                         artpoints[i] =1;
                     }
                 }
-                else if ( key != parent[i])
+               // else if ( i != parent[key ])
+            else
                 {
                     lowtime[i] = Math.min(lowtime[i],visitedtime[key]);
                 }
@@ -96,7 +100,7 @@ public class TarjansAlgo {
     {
         int v = g.numvertices();
         LinkedList<Pair<Integer, Integer>>[] adjList = g.getadjList();
-        System.out.println("the number of vertices are "+ v);
+        //System.out.println("the number of vertices are "+ v);
         int[] visited = new int[v];
         int[] artpoints = new int[v]; // articulate points
         int[] visitedtime = new int[v];
@@ -113,7 +117,7 @@ public class TarjansAlgo {
         for(int i=0;i<v;++i) {
             if(visited[i] == -1) // node not yet visited ,call dfs traversal
             {
-                recur(i,visited,artpoints,visitedtime,lowtime,parent,adjList[i]);
+                recur(i,visited,artpoints,visitedtime,lowtime,parent,adjList);
             }
         }
         System.out.println("the articulation points are");
@@ -140,10 +144,17 @@ public class TarjansAlgo {
         g.iterate();
         articulate(g);
         */
+        Graph g = new Graph(5);
+        g.newEdge(1, 0,5);
+        g.newEdge(0, 2,5);
+        g.newEdge(2, 1,5);
+        g.newEdge(0, 3,5);
+        g.newEdge(3, 4,5);
+        articulate(g);
         Graph g1 = new Graph(3);
         g1.newEdge(0,1,2);
         g1.newEdge(1,2,3);
-        g1.iterate();
+        //g1.iterate();
         articulate(g1);
 
         Graph g2 = new Graph(4);
@@ -161,5 +172,6 @@ public class TarjansAlgo {
         g3.newEdge(3, 5,5);
         g3.newEdge(4, 5,5);
         articulate(g3);
+
     }
 }
