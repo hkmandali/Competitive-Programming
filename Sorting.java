@@ -71,8 +71,9 @@ public class Sorting {
     }
     static int[] selection(int[] a) // sim to bub2 but swap is only made at the last
     {
-        int[] b =a;
-        int size = b.length;
+        int size = a.length;
+        int[] b =Arrays.copyOf(a,size); // this doesnt modify the original array and allocates a new memory in the heap
+
         System.out.println("the elements passed are ");
         System.out.print(Arrays.toString(b));
         for(int i=0;i<size;++i)
@@ -114,6 +115,28 @@ public class Sorting {
         }
         return b;
     }
+    static int[] shellsort(int[] a) // this is an advanced version of shell sort which reduces the
+                        // number of comparisons by dividing the list into sublists and then sorting accordingly
+    {
+        int[] b =a;
+        int size =a.length;
+        int gap_size = size/2;
+        for(;gap_size>0;gap_size= gap_size/2)
+        {
+            // now it is as normal insertion sort but the number of swaps are reduced
+            for(int i=gap_size;i<size;++i)
+            {
+                int temp = b[i]; // current index
+                int j =i;
+                for(;j>=gap_size && temp < b[j-gap_size];j-=gap_size)// bawically we are taking the elements of gap distance and comparing them 
+                {
+                    b[j] = b[j-gap_size]; // similar to insertion sort
+                }
+                b[j] = temp;
+            }
+        }
+        return b;
+    }
     public static void main(String[] args){
         int[] arr = {10,1,2,9,8,-7};
         int n = arr.length;// size of array
@@ -146,6 +169,11 @@ public class Sorting {
         {
             System.out.print(sel[i] +" ");
         }
+        System.out.println("the sinpout array is are ");
+        for(int i=0;i<n;++i)
+        {
+            System.out.print(selarr[i] +" ");
+        }
 
         int[] insarr = {10,1,2,9,8,-7};
         int[] ins = insertion(insarr);
@@ -153,6 +181,14 @@ public class Sorting {
         for(int i=0;i<n;++i)
         {
             System.out.print(ins[i] +" ");
+        }
+
+        int[] shellarr = {10,1,2,9,8,-7};
+        int[] shell = insertion(shellarr);
+        System.out.println("the sorted elements through shell sort are ");
+        for(int i=0;i<n;++i)
+        {
+            System.out.print(shell[i] +" ");
         }
 
         return;
