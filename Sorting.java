@@ -1,6 +1,6 @@
 package src;
 
-
+import src.QuickSort;
 import java.util.Arrays;
 
 public class Sorting {
@@ -301,6 +301,16 @@ public class Sorting {
         for(int i=0;i<len;++i)
         {
             System.out.print(mergeaftarr[i] +" ");
+        }
+
+        int[] quickarr = {10,1,2,9,-7,8};
+        int quicklen = quickarr.length;
+        QuickSort obj = new QuickSort();
+        int[] quickaftarr = obj.QuickSort(quickarr);
+        System.out.println("the sorted elements through quick sort are ");
+        for(int i=0;i<quicklen;++i)
+        {
+            System.out.print(quickaftarr[i] +" ");
         }
 
         return;
