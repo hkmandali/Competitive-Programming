@@ -313,6 +313,16 @@ public class Sorting {
             System.out.print(quickaftarr[i] +" ");
         }
 
+        int[] heaparr = {4,10,3,1,5};
+        int heaplen = heaparr.length;
+        HeapSort heapobj = new HeapSort();
+        int[] heapaftarr = heapobj.Heapsort(heaparr);
+        System.out.println("the sorted elements through heap sort are ");
+        for(int i=0;i<heaplen;++i)
+        {
+            System.out.print(heaparr[i] +" ");
+        }
+
         return;
     }
 }
