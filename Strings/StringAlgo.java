@@ -42,6 +42,9 @@ public class StringAlgo {
         }
         System.out.println("Through Rabin Karp string matching");
         RabinKarp.stringmatch(s1,s2,101); // third argument is a prime number for modulo hashing
+
+        System.out.println("Through KMP string matching");
+        KMPString.stringmatch(s1,s2); // third argument is a prime number for modulo hashing
         return;
     }
 }
