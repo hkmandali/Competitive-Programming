@@ -34,8 +34,8 @@ class TrieNode{
             }
             curr = node;
         }
-       // return 1; // this can be given in case of partial matches is accepted
-       return curr.endofstring;
+        // return 1; // this can be given in case of partial matches is accepted
+        return curr.endofstring;
     }
     void insert(String s,TrieNode t)
     {
@@ -63,10 +63,13 @@ class TrieNode{
             if(!t.endofstring)
                 return false;
             t.endofstring = false;
-            return t.child.size() == 0; // this is useful in line 76 because if there is a child , we need to keep the parent
+            int size = t.child.size();
+            System.out.println("size is "+size);
+            return true; // the below condition deletes the word from trie but doesnt return true
+            // to user as it checks if there are any children and returns true only if there are no children
+           // return t.child.size() == 0; // this is useful in line 76 because if there is a child , we need to keep the parent
             // else we can delete it as there is no more use of it
             // else we can give return true as below
-            //return true;
         }
         char ch = s.charAt(index);
         TrieNode node = t.child.get(ch);
@@ -84,10 +87,10 @@ class TrieNode{
     // this function prints all the contents of a trie
     void printall(TrieNode t,String s)
     {
-        if(t.child.size() == 0)
+        if(t.endofstring)
         {
-            System.out.println(" in print all "+s);
-            return;
+            System.out.println(s);
+
         }
 
 
@@ -109,17 +112,17 @@ public class Trie {
     public static void main(String[] args)
     {
         TrieNode t = new TrieNode();
-        String[] data= {"hola","thats'it","enti","testing","there"};
+        String[] data= {"hola","thats'it","enti","testing","there","entire","holab","holabahdsf"};
         for(int i=0;i<data.length;++i)
         {
             t.insert(data[i],t);// insering elements into trie
         }
-        boolean find = t.search("hol",t);
-        System.out.println("the string found is "+find);
-        boolean b_del = t.delete("enti",t,0);
-        System.out.println("the string found is "+b_del);
-        boolean b_del2 = t.delete("hola",t,0);
-        System.out.println("the string found  for hola is "+b_del2);
+       // boolean find = t.search("hol",t);
+        //System.out.println("the string found is "+find);
+        boolean b_del = t.delete("en",t,0);
+        System.out.println("delete for en is "+b_del);
+        boolean b_del2 = t.delete("enti",t,0);
+        System.out.println("delete  for enti is "+b_del2);
         /*
         Iterator<Map.Entry<Character,TrieNode>> itr = t.child.entrySet().iterator();
         while(itr.hasNext())        {
