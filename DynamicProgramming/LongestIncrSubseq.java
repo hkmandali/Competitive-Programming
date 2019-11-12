@@ -10,7 +10,7 @@ public class LongestIncrSubseq {
         int arr_length = arr.length;
         int[] temparr = new int[arr_length];//this stores the max length of sequence till that item
         temparr[0] =1;
-        int max_index =0; // this stores the current maximum element
+        int max_index =0; // this stores the index of current maximum element
         // in the increasing sequence for printing the list
         int max_length=0;
         // here we have two arrays curr array and temp ( longest increasing subsequence) array
