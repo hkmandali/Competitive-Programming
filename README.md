@@ -5,7 +5,7 @@ Caveat : Some of the problems have been taken up from Geeks for geeks or has the
 
 Priority Queue - comparator. The ordering is based on the return value of compare function which takes in two arguments obj1 and obj2.
 
-PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() { <br>
+PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator< ListNode >() { <br>
             @Override <br>
             public int compare(ListNode a,ListNode b)<br>
             {<br>
