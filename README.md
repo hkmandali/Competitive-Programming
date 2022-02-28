@@ -5,20 +5,20 @@ Caveat : Some of the problems have been taken up from Geeks for geeks or has the
 
 Priority Queue - comparator. The ordering is based on the return value of compare function which takes in two arguments obj1 and obj2.
 
-PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
-            @Override
-            public int compare(ListNode a,ListNode b)
-            {
-                if(a.val < b.val)
-                {
-                    return -1;
-                }
-                else if(a.val > b.val)
-                    return 1;
-                else
-                    return 0;
-            }
-        });
+PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() { <br>
+            @Override <br>
+            public int compare(ListNode a,ListNode b)<br>
+            {<br>
+                if(a.val < b.val)<br>
+                {<br>
+                    return -1;<br>
+                }<br>
+                else if(a.val > b.val)<br>
+                    return 1;<br>
+                else<br>
+                    return 0;<br>
+            }<br>
+        });<br>
 
 In case of min heap ,the ordering is if the return value > 0 i.e +ve obj1 is placed to right to obj2 
 If return value is < 0 obj1 is placed to the left of obj 2.
